@@ -104,7 +104,25 @@
   </main>
 
   <script>
-    const pageCards = document.querySelectorAll(".page-card");
+    const firstPage = document.querySelector(".first-gallery-page");
+    const otherPageCards = document.querySelectorAll(".page-card:not(.first-gallery-page)");
+
+    /*
+      Page 2 opening effect.
+      It starts only after gallery.html loads,
+      so it is visible after clicking the stamp.
+    */
+    window.addEventListener("load", function() {
+      if (firstPage) {
+        firstPage.classList.remove("page-visible");
+        firstPage.classList.remove("first-page-opened");
+
+        setTimeout(function() {
+          firstPage.classList.add("page-visible");
+          firstPage.classList.add("first-page-opened");
+        }, 180);
+      }
+    });
 
     const observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -118,21 +136,8 @@
       threshold: 0.25
     });
 
-    pageCards.forEach(function(card) {
+    otherPageCards.forEach(function(card) {
       observer.observe(card);
-    });
-
-    window.addEventListener("load", function() {
-      const firstPage = document.querySelector(".first-gallery-page");
-
-      if (firstPage) {
-        firstPage.classList.remove("page-visible");
-
-        setTimeout(function() {
-          firstPage.classList.add("page-visible");
-          firstPage.classList.add("first-page-opened");
-        }, 120);
-      }
     });
 
     const form = document.getElementById("rsvpForm");

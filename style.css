@@ -191,8 +191,14 @@ body {
 
 /* PAGE 2 OPENING EFFECT */
 
+.first-gallery-page {
+  opacity: 0;
+  transform: translateY(45px) scale(0.96);
+  filter: blur(5px);
+}
+
 .first-gallery-page.first-page-opened {
-  animation: firstPageOpen 0.9s ease forwards;
+  animation: firstPageOpen 1s ease forwards;
 }
 
 @keyframes firstPageOpen {
@@ -525,8 +531,14 @@ body {
     filter: blur(0);
   }
 
+  .first-gallery-page {
+    opacity: 0;
+    transform: translateY(35px) scale(0.96);
+    filter: blur(4px);
+  }
+
   .first-gallery-page.first-page-opened {
-    animation: firstPageOpenMobile 0.85s ease forwards;
+    animation: firstPageOpenMobile 1s ease forwards;
   }
 
   @keyframes firstPageOpenMobile {

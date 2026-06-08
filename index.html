@@ -66,14 +66,22 @@
         console.log("Music could not start:", error);
       }
 
-      galleryFrame.src = "gallery.html";
-
       document.body.classList.add("stamp-clicked");
       openEffect.classList.add("show");
 
+      /*
+        Important:
+        The gallery loads AFTER the stamp effect.
+        This makes page 2 animation visible on mobile.
+      */
       setTimeout(function() {
         document.body.classList.add("show-gallery");
         muteButton.classList.add("show");
+
+        setTimeout(function() {
+          galleryFrame.src = "gallery.html";
+        }, 120);
+
       }, 900);
     });
 

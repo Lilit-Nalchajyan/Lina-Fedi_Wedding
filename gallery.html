@@ -11,22 +11,12 @@
 
   <main class="gallery">
 
-    <!-- PAGE 2 -->
     <section class="image-container page-card">
-      <img
-        src="images/page2.png"
-        alt="Wedding welcome page"
-        class="invitation-image"
-      />
+      <img src="images/page2.png" alt="Wedding welcome page" class="invitation-image" />
     </section>
 
-    <!-- PAGE 3 - CHURCH -->
     <section class="image-container page-card">
-      <img
-        src="images/page3.png"
-        alt="Wedding ceremony page"
-        class="invitation-image"
-      />
+      <img src="images/page3.png" alt="Wedding ceremony page" class="invitation-image" />
 
       <a
         href="https://maps.app.goo.gl/pijSXCRr31NXPTo37?g_st=ic"
@@ -37,39 +27,26 @@
       </a>
     </section>
 
-    <!-- PAGE 4 - RESTAURANT -->
     <section class="image-container page-card">
-      <img
-        src="images/page4.png"
-        alt="Wedding reception page"
-        class="invitation-image"
-      />
+      <img src="images/page4.png" alt="Wedding reception page" class="invitation-image" />
 
       <a
         href="https://maps.app.goo.gl/qDhPd2dfKMx9R3VH9?g_st=ic"
         target="_blank"
         rel="noopener noreferrer"
         class="map-link restaurant-map"
-        aria-label="View Florence Terrace Restaurant on map">
+        aria-label="View Florence Restaurant on map">
       </a>
     </section>
 
-    <!-- PAGE 5 -->
     <section class="image-container page-card">
-      <img
-        src="images/page5.png"
-        alt="Wedding schedule page"
-        class="invitation-image"
-      />
+      <img src="images/page5.png" alt="Wedding schedule page" class="invitation-image" />
     </section>
 
-    <!-- PAGE 6 - RSVP -->
     <section class="image-container page-card page-six-container">
-      <img
-        src="images/page6.png"
-        alt="Dress code and RSVP page"
-        class="invitation-image"
-      />
+      <img src="images/page6.png" alt="Dress code and RSVP page" class="invitation-image" />
+
+      <div class="rsvp-cover"></div>
 
       <form
         class="rsvp-form"
@@ -80,55 +57,46 @@
         <input type="hidden" name="access_key" value="b449ca7d-b9e2-41a8-8416-8d75da561d3b">
         <input type="hidden" name="subject" value="Wedding RSVP - Lina & Fedi">
         <input type="hidden" name="from_name" value="Lina & Fedi Wedding Invitation">
-
         <input type="checkbox" name="botcheck" class="hidden-check">
 
-        <input
-          type="text"
-          name="Name"
-          class="rsvp-input name-input"
-          required
-        />
+        <div class="rsvp-panel">
 
-        <input
-          type="text"
-          name="Surname"
-          class="rsvp-input surname-input"
-          required
-        />
+          <h2 class="rsvp-title">Kindly Respond</h2>
 
-        <input
-          type="number"
-          name="Number Attending"
-          class="rsvp-input attending-input"
-          min="1"
-          required
-        />
+          <label class="form-row">
+            <span>Name</span>
+            <input type="text" name="Name" required>
+          </label>
 
-        <label class="rsvp-radio accept-area">
-          <input
-            type="radio"
-            name="Response"
-            value="Accepts with pleasure"
-            required
-          />
-          <span class="radio-mark"></span>
-        </label>
+          <label class="form-row">
+            <span>Surname</span>
+            <input type="text" name="Surname" required>
+          </label>
 
-        <label class="rsvp-radio decline-area">
-          <input
-            type="radio"
-            name="Response"
-            value="Declines with regret"
-          />
-          <span class="radio-mark"></span>
-        </label>
+          <label class="form-row">
+            <span>Number Attending</span>
+            <input type="text" inputmode="numeric" name="Number Attending" required>
+          </label>
 
-        <button type="submit" class="submit-rsvp">
-          Send RSVP
-        </button>
+          <div class="response-row">
+            <label class="response-option">
+              <input type="radio" name="Response" value="Accepts with pleasure" required>
+              <span class="circle"></span>
+              <span>Accepts with pleasure</span>
+            </label>
 
-        <p id="formMessage" class="form-message"></p>
+            <label class="response-option">
+              <input type="radio" name="Response" value="Declines with regret">
+              <span class="circle"></span>
+              <span>Declines with regret</span>
+            </label>
+          </div>
+
+          <button type="submit" class="submit-rsvp">Send</button>
+
+          <p id="formMessage" class="form-message"></p>
+
+        </div>
 
       </form>
     </section>
@@ -136,7 +104,6 @@
   </main>
 
   <script>
-    /* Page changing effect */
     const pageCards = document.querySelectorAll(".page-card");
 
     const observer = new IntersectionObserver(function(entries) {
@@ -155,7 +122,6 @@
       observer.observe(card);
     });
 
-    /* RSVP direct send */
     const form = document.getElementById("rsvpForm");
     const submitBtn = form.querySelector('button[type="submit"]');
     const formMessage = document.getElementById("formMessage");
@@ -179,7 +145,7 @@
         const data = await response.json();
 
         if (data.success) {
-          formMessage.textContent = "Thank you! Your RSVP has been sent.";
+          formMessage.textContent = "Thank you! Your reply has been sent.";
           form.reset();
         } else {
           formMessage.textContent = "Error: " + data.message;

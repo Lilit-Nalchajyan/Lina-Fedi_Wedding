@@ -18,7 +18,6 @@
         class="invitation-image"
       />
 
-      <!-- Clickable stamp -->
       <a
         href="gallery.html"
         class="stamp-link"
@@ -33,17 +32,14 @@
     </div>
   </main>
 
-  <!-- Music starts after clicking stamp -->
   <audio id="weddingMusic" loop preload="auto">
     <source src="music/Pino%20d%27Angio%27%20-%20Ma%20Quale%20Idea.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Mute / Unmute button -->
   <button id="muteButton" class="mute-button">
     Mute Music
   </button>
 
-  <!-- Gallery opens here so music continues playing -->
   <iframe
     src=""
     id="galleryFrame"
@@ -83,12 +79,7 @@
 
     muteButton.addEventListener("click", function() {
       weddingMusic.muted = !weddingMusic.muted;
-
-      if (weddingMusic.muted) {
-        muteButton.textContent = "Unmute Music";
-      } else {
-        muteButton.textContent = "Mute Music";
-      }
+      muteButton.textContent = weddingMusic.muted ? "Unmute Music" : "Mute Music";
     });
   </script>
 

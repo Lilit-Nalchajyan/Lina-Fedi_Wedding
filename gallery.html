@@ -11,7 +11,7 @@
 
   <main class="gallery">
 
-    <section class="image-container page-card">
+    <section class="image-container page-card first-gallery-page">
       <img src="images/page2.png" alt="Wedding welcome page" class="invitation-image" />
     </section>
 
@@ -120,6 +120,19 @@
 
     pageCards.forEach(function(card) {
       observer.observe(card);
+    });
+
+    window.addEventListener("load", function() {
+      const firstPage = document.querySelector(".first-gallery-page");
+
+      if (firstPage) {
+        firstPage.classList.remove("page-visible");
+
+        setTimeout(function() {
+          firstPage.classList.add("page-visible");
+          firstPage.classList.add("first-page-opened");
+        }, 120);
+      }
     });
 
     const form = document.getElementById("rsvpForm");

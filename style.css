@@ -1,0 +1,403 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f8f4ea;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.single-page,
+.gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* IMAGE CONTAINER */
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.invitation-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* FIRST PAGE STAMP */
+
+.stamp-link {
+  position: absolute;
+  left: 41.7%;
+  top: 50.7%;
+  width: 16.5%;
+  height: 12.5%;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* OPENING EFFECT */
+
+.cover-container {
+  transition: transform 1s ease, opacity 1s ease, filter 1s ease;
+}
+
+.stamp-clicked .cover-container {
+  transform: scale(1.05);
+  opacity: 0;
+  filter: blur(4px);
+}
+
+.open-effect {
+  position: absolute;
+  left: 50%;
+  top: 67%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
+  border-radius: 40px;
+  background: rgba(248, 244, 234, 0.94);
+  color: #8f79a8;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.open-effect.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+/* MUSIC */
+
+#weddingMusic {
+  display: none;
+}
+
+/* MUTE BUTTON */
+
+.mute-button {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 9999;
+  padding: 10px 20px;
+  border: 1px solid #9d8ab8;
+  background: #f8f4ea;
+  color: #7d689c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  border-radius: 30px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, background 0.3s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.mute-button.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mute-button:hover {
+  background: #eee6f5;
+}
+
+/* GALLERY FRAME */
+
+.gallery-frame {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  border: none;
+  background: #f8f4ea;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 1s ease;
+}
+
+.show-gallery .gallery-frame {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* GALLERY BODY */
+
+.gallery-body {
+  animation: galleryFadeIn 0.9s ease forwards;
+  scroll-snap-type: y proximity;
+  overflow-y: auto;
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* PAGE CHANGING EFFECT */
+
+.page-card {
+  scroll-snap-align: start;
+  opacity: 0;
+  transform: translateY(60px) scale(0.96);
+  filter: blur(5px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease,
+    filter 0.9s ease;
+}
+
+.page-card.page-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.page-card:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+/* MAP LINKS */
+
+.map-link {
+  position: absolute;
+  cursor: pointer;
+  z-index: 20;
+}
+
+/* Page 3 - Church VIEW ON MAP */
+.church-map {
+  left: 35.5%;
+  top: 91.75%;
+  width: 28%;
+  height: 3.2%;
+}
+
+/* Page 4 - Restaurant VIEW ON MAP */
+.restaurant-map {
+  left: 40.3%;
+  top: 94.15%;
+  width: 23.5%;
+  height: 3.2%;
+}
+
+/* RSVP FORM */
+
+.page-six-container {
+  margin-bottom: 130px;
+}
+
+.rsvp-form {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+}
+
+.hidden-check {
+  display: none;
+}
+
+/* TEXT INPUTS — exactly after printed text, at the start of the line */
+
+.rsvp-input {
+  position: absolute;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #2c2c2c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(14px, 2.1vw, 21px);
+  height: 24px;
+  line-height: 24px;
+  padding: 0 4px;
+  text-align: left;
+}
+
+/* Remove number input arrows */
+
+.attending-input::-webkit-inner-spin-button,
+.attending-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.attending-input {
+  -moz-appearance: textfield;
+}
+
+/* Name line */
+.name-input {
+  left: 26.7%;
+  top: 85.42%;
+  width: 44.8%;
+}
+
+/* Surname line */
+.surname-input {
+  left: 28.7%;
+  top: 88.78%;
+  width: 42.8%;
+}
+
+/* Number Attending line */
+.attending-input {
+  left: 38.7%;
+  top: 92.10%;
+  width: 32.8%;
+}
+
+/* RADIO OPTIONS */
+
+.rsvp-radio {
+  position: absolute;
+  cursor: pointer;
+  z-index: 40;
+  height: 3.4%;
+}
+
+.rsvp-radio input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Dot centered inside the printed circle */
+
+.radio-mark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: clamp(18px, 2.5vw, 23px);
+  height: clamp(18px, 2.5vw, 23px);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.rsvp-radio input:checked + .radio-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 45%;
+  height: 45%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #8f79a8;
+}
+
+/* Accepts with pleasure — centered on the printed circle */
+.accept-area {
+  left: 23.75%;
+  top: 95.03%;
+  width: 25%;
+}
+
+/* Declines with regret — centered on the printed circle */
+.decline-area {
+  left: 50.85%;
+  top: 95.03%;
+  width: 27%;
+}
+
+/* SEND RSVP BUTTON */
+
+.submit-rsvp {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 18px);
+  transform: translateX(-50%);
+  padding: 11px 32px;
+  border: 1px solid #9d8ab8;
+  background: #f8f4ea;
+  color: #7d689c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.submit-rsvp:hover {
+  background: #eee6f5;
+}
+
+.submit-rsvp:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* MESSAGE AFTER SENDING */
+
+.form-message {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 70px);
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  color: #7d689c;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .image-container {
+    max-width: 100%;
+  }
+
+  .open-effect {
+    font-size: 14px;
+    padding: 9px 20px;
+  }
+
+  .rsvp-input {
+    font-size: 12px;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 3px;
+  }
+
+  .submit-rsvp {
+    font-size: 13px;
+    padding: 8px 22px;
+  }
+
+  .form-message {
+    font-size: 13px;
+  }
+
+  .mute-button {
+    right: 12px;
+    bottom: 12px;
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lina & Fedi Wedding Invitation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <main class="single-page">
+    <div class="image-container cover-container">
+
+      <img
+        src="images/page1.png"
+        alt="Lina and Fedi Wedding Invitation Cover"
+        class="invitation-image"
+      />
+
+      <!-- Clickable stamp -->
+      <a
+        href="gallery.html"
+        class="stamp-link"
+        id="stampLink"
+        aria-label="Open wedding invitation">
+      </a>
+
+      <div class="open-effect" id="openEffect">
+        Opening invitation...
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Music starts after clicking stamp -->
+  <audio id="weddingMusic" loop preload="auto">
+    <source src="music/Pino%20d%27Angio%27%20-%20Ma%20Quale%20Idea.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Mute / Unmute button -->
+  <button id="muteButton" class="mute-button">
+    Mute Music
+  </button>
+
+  <!-- Gallery opens here so music continues playing -->
+  <iframe
+    src=""
+    id="galleryFrame"
+    class="gallery-frame"
+    title="Wedding invitation pages">
+  </iframe>
+
+  <script>
+    const stampLink = document.getElementById("stampLink");
+    const openEffect = document.getElementById("openEffect");
+    const galleryFrame = document.getElementById("galleryFrame");
+    const weddingMusic = document.getElementById("weddingMusic");
+    const muteButton = document.getElementById("muteButton");
+
+    stampLink.addEventListener("click", async function(event) {
+      event.preventDefault();
+
+      weddingMusic.volume = 0.8;
+      weddingMusic.muted = false;
+
+      try {
+        await weddingMusic.play();
+      } catch (error) {
+        console.log("Music could not start:", error);
+      }
+
+      galleryFrame.src = "gallery.html";
+
+      document.body.classList.add("stamp-clicked");
+      openEffect.classList.add("show");
+
+      setTimeout(function() {
+        document.body.classList.add("show-gallery");
+        muteButton.classList.add("show");
+      }, 900);
+    });
+
+    muteButton.addEventListener("click", function() {
+      weddingMusic.muted = !weddingMusic.muted;
+
+      if (weddingMusic.muted) {
+        muteButton.textContent = "Unmute Music";
+      } else {
+        muteButton.textContent = "Mute Music";
+      }
+    });
+  </script>
+
+</body>
+</html>

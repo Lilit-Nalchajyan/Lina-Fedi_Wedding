@@ -486,15 +486,23 @@ body {
   }
 
   .gallery-body {
-    scroll-snap-type: none;
+    scroll-snap-type: y proximity;
   }
 
-  .page-card,
+  .page-card {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+    filter: blur(2px);
+    transition:
+      opacity 0.65s ease,
+      transform 0.65s ease,
+      filter 0.65s ease;
+  }
+
   .page-card.page-visible {
     opacity: 1;
-    transform: none;
-    filter: none;
-    transition: opacity 0.3s ease;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 
   .page-card:not(:last-child) {
